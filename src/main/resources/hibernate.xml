@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <!-- Database connection settings -->
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <property name="hibernate.connection.username">dbadmin</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- JDBC connection pool settings (optional) -->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+
+        <!-- Specify the dialect for your database -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Echo all executed SQL to stdout (optional) -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Update the database schema automatically (optional) -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Specify annotated entity classes/packages to scan -->
+        <mapping class="com.example.YourEntityClass"/>
+
+    </session-factory>
+</hibernate-configuration>
