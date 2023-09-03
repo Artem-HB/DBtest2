@@ -1,6 +1,6 @@
 package org.example;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 
 
@@ -26,7 +26,9 @@ public class Customer {
     private String phoneNumber;
 
 
+    public Customer() {
 
+    }
 
     public Customer(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
