@@ -1,13 +1,15 @@
 package org.example;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CustomerPersistenceUnit");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.xml").buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
 
         String[][] customerData = {
                 {"Mave", "Dickenson", "exaplemail1@mail.com", "+38066789694"},
@@ -31,10 +33,12 @@ public class Main {
 
         // Print the generated customers
         for (org.example.Customer customer : customers) {
-            em.persist(customer);
+            session.persist(customer);
         }
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+
+        transaction.commit();
+
+        session.close();
+        sessionFactory.close();
     }
 }
